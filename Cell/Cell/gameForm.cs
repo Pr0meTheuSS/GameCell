@@ -14,7 +14,7 @@ namespace Cell
     {
         Color bg_clr = Color.Red;
         Graphics gr;
-        Player p = new Player();
+        Player p;
         Mob M1;
 
         List<Mob> Mobs = new List<Mob>();
@@ -25,7 +25,7 @@ namespace Cell
             InitializeComponent();
             gr = this.CreateGraphics();
             this.KeyDown += Form2_KeyDown;
-
+            p = new Player(pictureBox1.Location.X, pictureBox1.Location.Y);
             List<int> pos = new List<int>();
             List<int> vel = new List<int>();
             List<int> winSize = new List<int>();
@@ -50,28 +50,7 @@ namespace Cell
         }
         private void Form2_KeyDown(object sender, KeyEventArgs e)
         {
-            // надо заменить на p.Move(e.KeyData.ToString());
-            var x = this.pictureBox1.Location.X;
-            var y = this.pictureBox1.Location.Y;
-
-            if (e.KeyData.ToString() == "W")
-            {
-                y -= 5;
-            }
-            if (e.KeyData.ToString() == "S")
-            {
-                y += 5;
-            }
-            if (e.KeyData.ToString() == "D")
-            {
-                x += 5;
-            }
-            if (e.KeyData.ToString() == "A")
-            {
-                x -= 5;
-            }
-
-            this.pictureBox1.Location = new Point(x, y);
+            this.pictureBox1.Location = p.Move(e.KeyData.ToString());
         }
         private void gameForm_Load(object sender, EventArgs e)
         {
