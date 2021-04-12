@@ -8,6 +8,7 @@ namespace Cell
 {
     class Player
     {
-//        public void Move() { }
+      public void Move() 
+        { }
     }
 }

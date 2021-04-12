@@ -8,3 +8,14 @@ C:\Users\olimp\source\repos\Cell\Cell\obj\Debug\Cell.csproj.GenerateResource.cac
 C:\Users\olimp\source\repos\Cell\Cell\obj\Debug\Cell.csproj.CoreCompileInputs.cache
 C:\Users\olimp\source\repos\Cell\Cell\obj\Debug\Cell.exe
 C:\Users\olimp\source\repos\Cell\Cell\obj\Debug\Cell.pdb
+C:\Users\Егор\source\repos\GameCell\Cell\Cell\bin\Debug\Cell.exe.config
+C:\Users\Егор\source\repos\GameCell\Cell\Cell\bin\Debug\Cell.exe
+C:\Users\Егор\source\repos\GameCell\Cell\Cell\bin\Debug\Cell.pdb
+C:\Users\Егор\source\repos\GameCell\Cell\Cell\obj\Debug\Cell.csprojAssemblyReference.cache
+C:\Users\Егор\source\repos\GameCell\Cell\Cell\obj\Debug\Cell.Form1.resources
+C:\Users\Егор\source\repos\GameCell\Cell\Cell\obj\Debug\Cell.gameForm.resources
+C:\Users\Егор\source\repos\GameCell\Cell\Cell\obj\Debug\Cell.Properties.Resources.resources
+C:\Users\Егор\source\repos\GameCell\Cell\Cell\obj\Debug\Cell.csproj.GenerateResource.cache
+C:\Users\Егор\source\repos\GameCell\Cell\Cell\obj\Debug\Cell.csproj.CoreCompileInputs.cache
+C:\Users\Егор\source\repos\GameCell\Cell\Cell\obj\Debug\Cell.exe
+C:\Users\Егор\source\repos\GameCell\Cell\Cell\obj\Debug\Cell.pdb

@@ -15,7 +15,8 @@ namespace Cell
         int win_size_x;
         int win_size_y;
 
-        public Mob(List<int> position, List<int> velocity, List<int> winSize){
+        public Mob(List<int> position, List<int> velocity, List<int> winSize)
+        {
             this.x = position[0];
             this.y = position[1];
             this.x_velocity = velocity[0];
@@ -24,9 +25,11 @@ namespace Cell
             this.win_size_y = winSize[1];
         }
 
-        public void Move() {
+        public void Move()
+        {
            // отражение от стен (вычитание 45 от win_size костыль, но иначе моб выпадает за пределы окна)
-            if (this.x <= 0 || this.x >= this.win_size_x - 45) {
+            if (this.x <= 0 || this.x >= this.win_size_x - 45) 
+            {
                 this.x_velocity *= -1;
             }
             if (this.y <= 0 || this.y >= this.win_size_y - 45)
@@ -38,7 +41,8 @@ namespace Cell
             this.y += this.y_velocity;
         }
 
-        public List<int> GetPosition() {
+        public List<int> GetPosition() 
+        {
             List<int> ret = new List<int>();
             ret.Add(this.x);
             ret.Add(this.y);
