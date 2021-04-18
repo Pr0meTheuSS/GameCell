@@ -13,6 +13,7 @@ namespace Cell
         private int win_width, win_height;
         private String direction;
         List<Line> Lines = new List<Line>();
+        List<Polygon> Polygons = new List<Polygon>();
         private bool is_drawing;// флаг активации режима рисования
         public Player(int x, int y, List<int> winSize)
         {

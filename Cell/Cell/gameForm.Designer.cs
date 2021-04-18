@@ -59,7 +59,7 @@ namespace Cell
             this.MaximumSize = new System.Drawing.Size(1301, 740);
             this.MinimumSize = new System.Drawing.Size(1301, 740);
             this.Name = "gameForm";
-            this.Text = "gameForm";
+            this.Text = "Игровое поле";
             this.Load += new System.EventHandler(this.gameForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

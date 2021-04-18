@@ -34,15 +34,18 @@ namespace Cell
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.HardLevel = new System.Windows.Forms.NumericUpDown();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.MobsCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HardLevel)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Start
             // 
-            this.Start.Location = new System.Drawing.Point(22, 163);
+            this.Start.Location = new System.Drawing.Point(19, 129);
             this.Start.Name = "Start";
-            this.Start.Size = new System.Drawing.Size(128, 55);
+            this.Start.Size = new System.Drawing.Size(128, 35);
             this.Start.TabIndex = 0;
             this.Start.Text = "Старт";
             this.Start.UseVisualStyleBackColor = true;
@@ -50,7 +53,7 @@ namespace Cell
             // 
             // MobsCount
             // 
-            this.MobsCount.Location = new System.Drawing.Point(22, 44);
+            this.MobsCount.Location = new System.Drawing.Point(19, 44);
             this.MobsCount.Maximum = new decimal(new int[] {
             10,
             0,
@@ -68,7 +71,7 @@ namespace Cell
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 21);
+            this.label1.Location = new System.Drawing.Point(19, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(128, 17);
             this.label1.TabIndex = 2;
@@ -77,7 +80,7 @@ namespace Cell
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 88);
+            this.label2.Location = new System.Drawing.Point(19, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(137, 17);
             this.label2.TabIndex = 4;
@@ -85,7 +88,7 @@ namespace Cell
             // 
             // HardLevel
             // 
-            this.HardLevel.Location = new System.Drawing.Point(22, 111);
+            this.HardLevel.Location = new System.Drawing.Point(19, 101);
             this.HardLevel.Maximum = new decimal(new int[] {
             10,
             0,
@@ -100,11 +103,33 @@ namespace Cell
             0,
             0});
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Location = new System.Drawing.Point(177, 21);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(363, 143);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Справка:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(19, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(325, 85);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Движение: W, A, S, D.\r\nНажатие пробела начинает/прекращает \r\nрисование линии.\r\nПр" +
+    "и замыкании линии она становится зеленой \r\nи не может исчезнуть.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 453);
+            this.ClientSize = new System.Drawing.Size(557, 187);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.HardLevel);
             this.Controls.Add(this.label1);
@@ -117,6 +142,8 @@ namespace Cell
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MobsCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HardLevel)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -129,6 +156,8 @@ namespace Cell
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown HardLevel;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label3;
     }
 }
 

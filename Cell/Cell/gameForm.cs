@@ -41,7 +41,6 @@ namespace Cell
 
             for (int i = 0; i < mobsCount; i++)
             {
-
                 pos.Clear();
                 pos.Add(random.Next(50, winSize[0] - 50));
                 pos.Add(random.Next(50, winSize[1] - 50));
@@ -78,7 +77,7 @@ namespace Cell
         }
         private void gameForm_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Управление :");
+            //MessageBox.Show("Управление :");
         }
 
         private void timer1_Tick(object sender, EventArgs e)
