@@ -48,7 +48,9 @@ namespace Cell
             double c = Math.Round(Math.Sqrt(Math.Pow((start.X - end.X), 2) + Math.Pow((start.Y - end.Y), 2)));
             // Полупериметр для формулы Герона
             double p = (a + b + c) / 2;
-            double dist = Math.Round( 2.0/c * Math.Sqrt(p * (p - a) * (p - b) * (p - c)));
+            double dist = 0.0;
+            if (c != 0.0)
+                dist = Math.Round( 2.0/c * Math.Sqrt(p * (p - a) * (p - b) * (p - c)));
             
             List<int> vector_AC = new List<int>();
             vector_AC.Add(M.GetPosition().X - start.X);
@@ -61,8 +63,10 @@ namespace Cell
             List<int> vector_BC = new List<int>();
             vector_BC.Add(M.GetPosition().X - end.X);
             vector_BC.Add(M.GetPosition().Y - end.Y);
-               // Возвращаем логическое И ограничений на расстояние и углы при основании(тут свойство скалярного произведения)
-            return (dist <= (double)M.GetSize() && vector_AB[0] * vector_AC[0] + vector_AB[1] * vector_AC[1] >= 0 && -vector_AB[0] * vector_BC[0] + -vector_AB[1] * vector_BC[1] >= 0);
+
+
+            // Возвращаем логическое И ограничений на расстояние и углы при основании(тут свойство скалярного произведения)
+            return (dist <= (double)M.GetSize()/2 && vector_AB[0] * vector_AC[0] + vector_AB[1] * vector_AC[1] >= 0 && -vector_AB[0] * vector_BC[0] + -vector_AB[1] * vector_BC[1] >= 0);
         
         }
         public void SetIsClosed(bool is_closed) {

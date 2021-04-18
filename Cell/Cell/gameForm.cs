@@ -9,26 +9,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-
 namespace Cell
 {
     public partial class gameForm : Form
     {
-        Color bg_clr = Color.Red;
+        Color bg_clr = Color.White;
         Graphics gr;
         Player p;
-        Mob M1;
-
         List<Mob> Mobs = new List<Mob>();
-        string sym;
 
         public gameForm(int speed, int mobsCount)
         {
             InitializeComponent();
             gr = this.CreateGraphics();
+            DoubleBuffered = true;
+           
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+            
             this.KeyDown += Form2_KeyDown;
-
             List<int> pos = new List<int>();
             List<int> vel = new List<int>();
             List<int> winSize = new List<int>();
@@ -63,7 +61,7 @@ namespace Cell
         }
         private void gameForm_Load(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Управление :");
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -73,22 +71,22 @@ namespace Cell
             Pen pen_blue = new Pen(Color.Blue, 6);
             Pen pen_green = new Pen(Color.Green, 6);
 
-            //каждый моб перемещается
-            foreach (Mob mob in Mobs)
-            {
-                mob.Move();
-                Point pos = mob.GetPosition();
-                Rectangle R = new Rectangle(pos.X, pos.Y, mob.GetSize(), mob.GetSize());
-                p.check_collision(mob);
-                this.gr.DrawEllipse(pen_blue, R);
-            }
-
             for (int i = 0; i < p.GetLines().Count(); i++)
             {
                 if (p.GetLines()[i].GetIsClosed())
                     this.gr.DrawLine(pen_green, p.GetLines()[i].GetStart(), p.GetLines()[i].GetEnd());
                 else
                     this.gr.DrawLine(pen_blue, p.GetLines()[i].GetStart(), p.GetLines()[i].GetEnd());
+            }
+
+            //каждый моб перемещается
+            foreach (Mob mob in Mobs)
+            {
+                Point pos = mob.GetPosition();
+                Rectangle R = new Rectangle(pos.X, pos.Y, mob.GetSize(), mob.GetSize());
+                p.check_collision(mob);
+                mob.Move();
+                this.gr.DrawEllipse(pen_blue, R);
             }
         }
     }
