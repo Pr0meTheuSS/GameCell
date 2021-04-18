@@ -13,25 +13,30 @@ namespace Cell
         Point end;
         bool is_closed;
 
-        public Line(Point start, Point end) {
+        public Line(Point start, Point end)
+        {
             this.start = start;
             this.end = end;
             this.is_closed = false;
         }
 
-        public Point GetStart() {
+        public Point GetStart()
+        {
             return start;
         }
 
-        public Point GetEnd() {
+        public Point GetEnd() 
+        {
             return end;
         }
 
-        public bool GetIsClosed() {
+        public bool GetIsClosed() 
+        {
             return is_closed;
         }
 
-        public bool IsCollision(Mob M) {
+        public bool IsCollision(Mob M) 
+        {
 
 
             /*
@@ -69,7 +74,8 @@ namespace Cell
             return (dist <= (double)M.GetSize()/2 && vector_AB[0] * vector_AC[0] + vector_AB[1] * vector_AC[1] >= 0 && -vector_AB[0] * vector_BC[0] + -vector_AB[1] * vector_BC[1] >= 0);
         
         }
-        public void SetIsClosed(bool is_closed) {
+        public void SetIsClosed(bool is_closed) 
+        {
             this.is_closed = is_closed;
         }
 

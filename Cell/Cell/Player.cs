@@ -26,9 +26,21 @@ namespace Cell
             if (sym == "Space")
             {
                 is_drawing = !is_drawing;
+                if(!is_drawing)
+                {
+                    for(int i = 0; i < Lines.Count; i++)
+                    {
+                        if (!Lines[i].GetIsClosed())
+                        {
+                            Lines.Remove(Lines[i]);
+                            i--;
+                        }
+                    }
+                }
             }
             // проверка пересечений с линиями при включенном режиме отрисовки
-            if (is_drawing) {
+            if (is_drawing) 
+            {
                 check_crossing();
             }
 
@@ -60,7 +72,8 @@ namespace Cell
                 y = win_height - 50;
 
 
-            if (is_drawing) {
+            if (is_drawing) 
+            {
                 // Если изменилось направление движения - строим линию от конца последней построенной линии до текущего положения игрока
                 if (sym != this.direction)
                 {
@@ -86,14 +99,16 @@ namespace Cell
                     }
                 }
             }
-            if (sym != "Space") {
+            if (sym != "Space") 
+            {
                 direction = sym;
             }
 
             return new Point(x, y);
         }
 
-        public void check_crossing() {
+        public void check_crossing() 
+        {
             // Проверка на пересечение со всеми линиями кроме последней(текущей)
             for (int i = 0; i < Lines.Count() - 1; i++)
             {
@@ -144,10 +159,10 @@ namespace Cell
             }
         }
 
-        public void check_collision(Mob M) {
-
-
-            for (int i = 0; i < Lines.Count(); i++) {
+        public void check_collision(Mob M)
+        {
+            for (int i = 0; i < Lines.Count(); i++)
+            {
                 // проверяем каждую прямую на замкнутость и пересечение с координатами моба
                 if (Lines[i].IsCollision(M))
                 {
@@ -163,7 +178,8 @@ namespace Cell
                             }
                         }
                     }
-                    else {
+                    else 
+                    {
                         Console.Out.WriteLine("Reflection!");
                         // Если коллизия и линия замкнута - отражение моба от стенки
                         if (Lines[i].GetStart().X == Lines[i].GetEnd().X)
@@ -178,15 +194,18 @@ namespace Cell
                 }
             }
             // Чтобы список линий не был пустым, а то сделаю атата!
-            if (Lines.Count() == 0) {
+            if (Lines.Count() == 0)
+            {
                 Lines.Add(new Line(new Point(x, y), new Point(x, y)));
             }
         }
 
-        public Point GetCurPos() {
+        public Point GetCurPos() 
+        {
             return new Point(x, y);
         }
-        public List<Line> GetLines() {
+        public List<Line> GetLines() 
+        {
             return Lines;
         }
     }
