@@ -139,7 +139,6 @@ namespace Cell
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Клетка-Меню";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MobsCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HardLevel)).EndInit();
             this.groupBox1.ResumeLayout(false);
