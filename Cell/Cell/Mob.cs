@@ -16,6 +16,10 @@ namespace Cell
         int size;
         int win_size_x;
         int win_size_y;
+        bool is_inside;
+
+        public bool Get_is_inside() { return is_inside; }
+        public void Set_is_inside(bool value) { is_inside = value; }
 
         public Mob(List<int> position, List<int> velocity, List<int> winSize, int size)
         {
@@ -26,11 +30,11 @@ namespace Cell
             this.win_size_x = winSize[0];
             this.win_size_y = winSize[1];
             this.size = size;
+            is_inside = false;
         }
 
         public void Reflection(String orientation) {
 
-            // Уёбская функция (по-хорошему тут должны были быть матричные преобразования общего вида, но так похуй)
             if (orientation == "Vertical") {
                 this.y_velocity *= -1;
             }
@@ -41,7 +45,7 @@ namespace Cell
         }
         public void Move()
         {
-           // отражение от стен (вычитание 45 от win_size костыль, но иначе моб выпадает за пределы окна)
+           // отражение от стен 
             if (this.x <= 0 || this.x >= this.win_size_x - 40) 
             {
                 Reflection("Horizontal");

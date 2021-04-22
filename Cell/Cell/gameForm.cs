@@ -45,11 +45,7 @@ namespace Cell
                 pos.Add(random.Next(50, winSize[0] - 50));
                 pos.Add(random.Next(50, winSize[1] - 50));
 
-                // x^2 + Y^2 == speed^2 -> x определим рандомно в диапазоне [-speed/2;speed/2] -> из уравнения найдём Y = sqrt(speed^2 - x^2)
                 vel.Clear();
-                //vel.Add(random.Next(0, speed / 2) - speed);
-                //int rand_sign = random.Next(0, 2) == 0 ? -1 : 1;
-                //vel.Add(rand_sign * (int)Math.Round(Math.Sqrt(speed * speed - vel[0] * vel[0])));
                 int signX = random.Next(-1, 1);
                 int signY = random.Next(-1, 1);
                 vel.Add(speed * signX);
@@ -77,7 +73,7 @@ namespace Cell
         }
         private void gameForm_Load(object sender, EventArgs e)
         {
-            //MessageBox.Show("Управление :");
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -86,7 +82,7 @@ namespace Cell
             Bitmap Image = new Bitmap(Width, Height);
             gr = Graphics.FromImage(Image);
             gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-
+            int closed_mob_counter = 0;
             this.gr.Clear(this.bg_clr);
             // разные цвета для отрисовки линий
             Pen pen_blue = new Pen(Color.Blue, 6);
@@ -103,13 +99,29 @@ namespace Cell
             //каждый моб перемещается
             foreach (Mob mob in Mobs)
             {
+                
                 Point pos = mob.GetPosition();
                 Rectangle R = new Rectangle(pos.X, pos.Y, mob.GetSize(), mob.GetSize());
                 p.check_collision(mob);
+                if (!mob.Get_is_inside())
+                {
+                    p.check_mob_inside(mob);
+                }
+                else {
+                    closed_mob_counter++;    
+                }
                 mob.Move();
-                this.gr.DrawEllipse(pen_blue, R);
-            }
+                if (mob.Get_is_inside())
+                    this.gr.DrawEllipse(pen_green, R);
+                else
+                    this.gr.DrawEllipse(pen_blue, R);
 
+            }
+            if (closed_mob_counter == Mobs.Count()) {
+                timer1.Stop();
+                MessageBox.Show("Game Over!");
+                Close();
+            }
             // теперь нужно скопировать кадр на канвас формы
             var FormG = CreateGraphics();
             FormG.DrawImageUnscaled(Image, 0, 0);

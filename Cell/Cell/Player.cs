@@ -110,14 +110,18 @@ namespace Cell
 
         public void check_crossing() 
         {
+            List<Line> polygon_lines = new List<Line>();
+
             // Проверка на пересечение со всеми линиями кроме последней(текущей)
             for (int i = 0; i < Lines.Count() - 1; i++)
             {
+
+
                 int min_x = (Lines[i].GetStart().X < Lines[i].GetEnd().X) ? Lines[i].GetStart().X : Lines[i].GetEnd().X;
                 int min_y = (Lines[i].GetStart().Y < Lines[i].GetEnd().Y) ? Lines[i].GetStart().Y : Lines[i].GetEnd().Y;
                 int max_x = (Lines[i].GetStart().X > Lines[i].GetEnd().X) ? Lines[i].GetStart().X : Lines[i].GetEnd().X;
                 int max_y = (Lines[i].GetStart().Y > Lines[i].GetEnd().Y) ? Lines[i].GetStart().Y : Lines[i].GetEnd().Y;
-                // Если позиция игрока совпадает с некоторой прямой(переcечение) (впоследствии необходимо добавить проверку флага is_drawing)
+                // Если позиция игрока совпадает с некоторой прямой(переcечение) 
                 if ((this.x == Lines[i].GetStart().X && this.x == Lines[i].GetEnd().X && min_y <= this.y && this.y <= max_y) ||
                     (this.y == Lines[i].GetStart().Y && this.y == Lines[i].GetEnd().Y && min_x <= this.x && this.x <= max_x)
                     )
@@ -125,13 +129,13 @@ namespace Cell
                     // Если линия, с которой зафиксировано пересечение, незамкнута
                     if (!Lines[i].GetIsClosed())
                     {
-
                         // Корректируем первую линию в петле, отрезая "хвост" 
                         Point start = new Point(x, y);
                         Point end = Lines.ElementAt(i).GetEnd();
                         Lines.RemoveAt(i);
                         Lines.Insert(i, new Line(start, end));
-                        Lines[i].SetIsClosed(true);
+//                        Lines[i].SetIsClosed(true);
+
                         // Удаляем незамкнутые линии до i-той линии( то есть до первой в петле)
                         while (i > 0)
                         {
@@ -141,10 +145,14 @@ namespace Cell
                                 Lines.RemoveAt(i);
                             }
                         }
-                        // Помечаем замкнутыми линии от пересеченной до текущей (последней в списке линий)
-                        for (int t = 0; t < Lines.Count(); t++)
+                        // Помечаем замкнутыми линии от пересеченной до текущей невключительно (последней в списке линий)
+                        for (int t = 0; t < Lines.Count() - 1; t++)
                         {
-                            Lines[t].SetIsClosed(true);
+                            if (!Lines[t].GetIsClosed())
+                            {
+                                Lines[t].SetIsClosed(true);
+                                polygon_lines.Add(Lines[t]);
+                            }
                         }
                         // Корректируем последнюю(текущую) линию, отрезая "хвост"
                         start = Lines.Last().GetStart();
@@ -152,8 +160,14 @@ namespace Cell
                         Lines.Remove(Lines.Last());
                         Lines.Add(new Line(start, end));
                         Lines.Last().SetIsClosed(true);
+
+                        polygon_lines.Add(Lines.Last());
                         // При замыкании переключаем режим отрисовки
                         is_drawing = !is_drawing;
+                        Polygons.Add(new Polygon(polygon_lines));
+                        Console.Out.WriteLine(polygon_lines.Count().ToString());
+                        Console.Out.WriteLine(Polygons.Count().ToString());
+                        polygon_lines.Clear();
                         break;
                     }
                 }
@@ -181,7 +195,6 @@ namespace Cell
                     }
                     else 
                     {
-                        Console.Out.WriteLine("Reflection!");
                         // Если коллизия и линия замкнута - отражение моба от стенки
                         if (Lines[i].GetStart().X == Lines[i].GetEnd().X)
                         {
@@ -194,13 +207,22 @@ namespace Cell
                     }
                 }
             }
-            // Чтобы список линий не был пустым, а то сделаю атата!
+            // Чтобы список линий не был пустым
             if (Lines.Count() == 0)
             {
                 Lines.Add(new Line(new Point(x, y), new Point(x, y)));
             }
         }
 
+        public void check_mob_inside(Mob M) {
+            for (int i = 0; i < Polygons.Count(); i++) {
+                if (Polygons[i].is_inside(M))
+                {
+                    M.Set_is_inside(true);
+                    break;
+                }
+            }
+        }
         public Point GetCurPos() 
         {
             return new Point(x, y);
