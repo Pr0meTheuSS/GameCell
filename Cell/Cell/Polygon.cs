@@ -20,6 +20,7 @@ namespace Cell
             // из позиции моба и считаем количество пересечений со сторонами полигона - 
             // если их нечетное число - моб внутри, иначе - снаружи
             int crossing_counter = 0;
+            int crossing_vertex_counter = 0;
             int x, y, b;
             b = M.GetPosition().Y - M.GetPosition().X;
 
@@ -43,6 +44,10 @@ namespace Cell
                             Console.Out.WriteLine(x.ToString());
                             Console.Out.WriteLine(y.ToString());
                             Console.Out.WriteLine("************************");
+                        }
+                        // Если была пересечена вершина
+                        else if ( (x == lines[i].GetStart().X && y == lines[i].GetStart().Y) || (x == lines[i].GetEnd().X && y == lines[i].GetEnd().Y)) {
+                            crossing_vertex_counter++;
                         }
                     }
                 }
@@ -69,7 +74,7 @@ namespace Cell
 
                 }
             }
-            return (crossing_counter % 2 == 1);
+            return ((crossing_counter + crossing_vertex_counter) % 2 == 1);
         }
     }
 }
