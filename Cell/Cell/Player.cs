@@ -167,6 +167,11 @@ namespace Cell
                         Polygons.Add(new Polygon(polygon_lines));
                         Console.Out.WriteLine(polygon_lines.Count().ToString());
                         Console.Out.WriteLine(Polygons.Count().ToString());
+                        for (int j = 0; j < polygon_lines.Count(); j++) {
+                            Console.Out.WriteLine(polygon_lines[j].GetStart().X.ToString() + " " + polygon_lines[j].GetStart().Y.ToString());
+                            Console.Out.WriteLine(polygon_lines[j].GetEnd().X.ToString() + " " + polygon_lines[j].GetEnd().Y.ToString());
+                        }
+
                         polygon_lines.Clear();
                         break;
                     }

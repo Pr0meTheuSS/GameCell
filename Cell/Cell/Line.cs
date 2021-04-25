@@ -71,7 +71,7 @@ namespace Cell
 
 
             // Возвращаем логическое И ограничений на расстояние и углы при основании(тут свойство скалярного произведения)
-            return (dist <= (double)M.GetSize()*2.0 && vector_AB[0] * vector_AC[0] + vector_AB[1] * vector_AC[1] >= 0 && -vector_AB[0] * vector_BC[0] + -vector_AB[1] * vector_BC[1] >= 0);
+            return (dist <= (double)M.GetSize()*1.5 && vector_AB[0] * vector_AC[0] + vector_AB[1] * vector_AC[1] >= 0 && -vector_AB[0] * vector_BC[0] + -vector_AB[1] * vector_BC[1] >= 0);
         
         }
         public void SetIsClosed(bool is_closed) 

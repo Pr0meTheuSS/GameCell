@@ -40,13 +40,9 @@ namespace Cell
                         {
                             // фиксируем пересечение
                             crossing_counter++;
-                            Console.Out.WriteLine("************************");
-                            Console.Out.WriteLine(x.ToString());
-                            Console.Out.WriteLine(y.ToString());
-                            Console.Out.WriteLine("************************");
                         }
-                        // Если была пересечена вершина
-                        else if ( (x == lines[i].GetStart().X && y == lines[i].GetStart().Y) || (x == lines[i].GetEnd().X && y == lines[i].GetEnd().Y)) {
+                        // Если происходит пересечение вершины
+                        else if ((x == lines[i].GetStart().X && y == lines[i].GetStart().Y) || (x == lines[i].GetEnd().X && y == lines[i].GetEnd().Y)) {
                             crossing_vertex_counter++;
                         }
                     }
@@ -65,16 +61,19 @@ namespace Cell
                         {
                             // фиксируем пересечение
                             crossing_counter++;
-                            Console.Out.WriteLine("************************");
-                            Console.Out.WriteLine(x.ToString());
-                            Console.Out.WriteLine(y.ToString());
-                            Console.Out.WriteLine("************************");
+                        }
+                        // Если происходит пересечение вершины
+                        else if ((x == lines[i].GetStart().X && y == lines[i].GetStart().Y) || (x == lines[i].GetEnd().X && y == lines[i].GetEnd().Y))
+                        {
+                            crossing_vertex_counter++;
                         }
                     }
-
                 }
             }
-            return ((crossing_counter + crossing_vertex_counter) % 2 == 1);
+            // произошло пересечение только вершины полигона - игнорим
+            if (crossing_counter == 0 && crossing_vertex_counter == 2)
+                return false;
+            return (crossing_counter + crossing_vertex_counter/2) % 2 == 1;
         }
     }
 }
