@@ -17,9 +17,28 @@ namespace Cell
         int win_size_x;
         int win_size_y;
         bool is_inside;
+        int inside_counter = 0;
 
         public bool Get_is_inside() { return is_inside; }
-        public void Set_is_inside(bool value) { is_inside = value; }
+        public void Set_is_inside(bool value) {
+            // Если моба пытаются пометить как "внутреннего"
+            if (value == true)
+            {
+                // Если моб больше 4 раз подряд признавался мобом внутри полигона
+                if (inside_counter >= 5)
+                {
+                    is_inside = true;
+                }
+                else
+                {
+                    inside_counter++;
+                }
+            }
+            else {
+                inside_counter = 0;
+                is_inside = false;
+            }
+        }
 
         public Mob(List<int> position, List<int> velocity, List<int> winSize, int size)
         {
