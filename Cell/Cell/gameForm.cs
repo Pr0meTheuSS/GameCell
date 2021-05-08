@@ -96,26 +96,26 @@ namespace Cell
                     this.gr.DrawLine(pen_blue, p.GetLines()[i].GetStart(), p.GetLines()[i].GetEnd());
             }
 
+            closed_mob_counter = 0;
             //каждый моб перемещается
             foreach (Mob mob in Mobs)
             {
                 
                 Point pos = mob.GetPosition();
                 Rectangle R = new Rectangle(pos.X, pos.Y, mob.GetSize(), mob.GetSize());
+
+                p.check_mob_inside(mob);
                 p.check_collision(mob);
-                if (!mob.Get_is_inside())
+
+                if (mob.Get_is_inside())
                 {
-                    p.check_mob_inside(mob);
+                    closed_mob_counter++;
                 }
-                else {
-                    closed_mob_counter++;    
-                }
-                mob.Move();
                 if (mob.Get_is_inside())
                     this.gr.DrawEllipse(pen_green, R);
                 else
                     this.gr.DrawEllipse(pen_blue, R);
-
+                mob.Move();
             }
             if (closed_mob_counter == Mobs.Count()) {
                 timer1.Stop();

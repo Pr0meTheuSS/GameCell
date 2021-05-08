@@ -35,8 +35,14 @@ namespace Cell
                 }
             }
             else {
-                inside_counter = 0;
-                is_inside = false;
+                
+                if (inside_counter <= 0)
+                {
+                    is_inside = false;
+                }
+                else {
+                    inside_counter--;
+                }
             }
         }
 
@@ -85,6 +91,10 @@ namespace Cell
 
         public int GetSize() {
             return size;
+        }
+
+        public Point GetVelocity() {
+            return new Point(x_velocity, y_velocity);
         }
     }
 }

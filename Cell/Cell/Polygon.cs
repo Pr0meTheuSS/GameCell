@@ -71,7 +71,7 @@ namespace Cell
                 }
             }
             // произошло пересечение только вершины полигона - игнорим
-            if (crossing_counter == 0 && crossing_vertex_counter == 2)
+            if (crossing_counter == 0)
                 return false;
             return (crossing_counter + crossing_vertex_counter/2) % 2 == 1;
         }

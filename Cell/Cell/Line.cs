@@ -66,10 +66,18 @@ namespace Cell
             List<int> vector_BC = new List<int>();
             vector_BC.Add(M.GetPosition().X - end.X);
             vector_BC.Add(M.GetPosition().Y - end.Y);
-
-
+            double limit = Math.Sqrt(M.GetVelocity().X * M.GetVelocity().X + M.GetVelocity().Y * M.GetVelocity().Y);
+            /*
+              if (start.X == end.X)
+              {
+                  limit = M.GetVelocity().X;
+              }
+              else if (start.Y == end.Y){
+                  limit = M.GetVelocity().Y;
+              }
+             */
             // Возвращаем логическое И ограничений на расстояние и углы при основании(тут свойство скалярного произведения)
-            return (dist <= (double)M.GetSize()*1.5 && vector_AB[0] * vector_AC[0] + vector_AB[1] * vector_AC[1] >= 0 && -vector_AB[0] * vector_BC[0] + -vector_AB[1] * vector_BC[1] >= 0);
+            return (dist <= limit && vector_AB[0] * vector_AC[0] + vector_AB[1] * vector_AC[1] >= 0 && -vector_AB[0] * vector_BC[0] + -vector_AB[1] * vector_BC[1] >= 0);
         
         }
         public void SetIsClosed(bool is_closed) 
