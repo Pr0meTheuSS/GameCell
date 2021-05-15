@@ -42,7 +42,8 @@ namespace Cell
                             crossing_counter++;
                         }
                         // Если происходит пересечение вершины
-                        else if ((x == lines[i].GetStart().X && y == lines[i].GetStart().Y) || (x == lines[i].GetEnd().X && y == lines[i].GetEnd().Y)) {
+                        else if ((x == lines[i].GetStart().X && y == lines[i].GetStart().Y) || (x == lines[i].GetEnd().X && y == lines[i].GetEnd().Y)) 
+                        {
                             crossing_vertex_counter++;
                         }
                     }
@@ -71,8 +72,10 @@ namespace Cell
                 }
             }
             // произошло пересечение только вершины полигона - игнорим
-            if (crossing_counter == 0)
+            if (crossing_counter == 0) 
+            {
                 return false;
+            }
             return (crossing_counter + crossing_vertex_counter/2) % 2 == 1;
         }
     }

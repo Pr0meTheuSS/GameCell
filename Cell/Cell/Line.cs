@@ -46,15 +46,20 @@ namespace Cell
              */
             // a, b ,c - длины сторон треугольника(c - основание треугольника)
             // a= корень из( (x1-x2)^2 + (y1-y2)^2 )
-            double a = Math.Round(Math.Sqrt(Math.Pow((M.GetPosition().X - start.X), 2) + Math.Pow((M.GetPosition().Y - start.Y), 2)));
-            double b = Math.Round(Math.Sqrt(Math.Pow((M.GetPosition().X - end.X), 2) + Math.Pow((M.GetPosition().Y - end.Y), 2)));
-            double c = Math.Round(Math.Sqrt(Math.Pow((start.X - end.X), 2) + Math.Pow((start.Y - end.Y), 2)));
+            double a = Math.Sqrt(Math.Pow((M.GetPosition().X - start.X), 2) + Math.Pow((M.GetPosition().Y - start.Y), 2));
+            double b = Math.Sqrt(Math.Pow((M.GetPosition().X - end.X), 2) + Math.Pow((M.GetPosition().Y - end.Y), 2));
+            double c = Math.Sqrt(Math.Pow((start.X - end.X), 2) + Math.Pow((start.Y - end.Y), 2));
+
             // Полупериметр для формулы Герона
             double p = (a + b + c) / 2;
+
             double dist = 0.0;
-            if (c != 0.0)
-                dist = Math.Round( 2.0/c * Math.Sqrt(p * (p - a) * (p - b) * (p - c)));
-            
+
+            if (c != 0.0) 
+            {
+                dist = 2.0 / c * Math.Sqrt(p * (p - a) * (p - b) * (p - c));
+            }
+
             List<int> vector_AC = new List<int>();
             vector_AC.Add(M.GetPosition().X - start.X);
             vector_AC.Add(M.GetPosition().Y - start.Y);
@@ -66,24 +71,26 @@ namespace Cell
             List<int> vector_BC = new List<int>();
             vector_BC.Add(M.GetPosition().X - end.X);
             vector_BC.Add(M.GetPosition().Y - end.Y);
-            double limit = Math.Sqrt(M.GetVelocity().X * M.GetVelocity().X + M.GetVelocity().Y * M.GetVelocity().Y);
-            /*
-              if (start.X == end.X)
-              {
-                  limit = M.GetVelocity().X;
-              }
-              else if (start.Y == end.Y){
-                  limit = M.GetVelocity().Y;
-              }
-             */
+
+            double limit = 0;
+            // Если прямая вертикальная
+            if (start.X == end.X)
+            {
+                limit = Math.Abs(M.GetVelocity().X);
+            }
+            // Если прямая горизонтальная
+            else if (start.Y == end.Y) 
+            {
+                limit = Math.Abs(M.GetVelocity().Y);
+            }
+
             // Возвращаем логическое И ограничений на расстояние и углы при основании(тут свойство скалярного произведения)
-            return (dist <= limit && vector_AB[0] * vector_AC[0] + vector_AB[1] * vector_AC[1] >= 0 && -vector_AB[0] * vector_BC[0] + -vector_AB[1] * vector_BC[1] >= 0);
+            return (dist <= 3 * limit && vector_AB[0] * vector_AC[0] + vector_AB[1] * vector_AC[1] >= 0 && -vector_AB[0] * vector_BC[0] + -vector_AB[1] * vector_BC[1] >= 0);
         
         }
         public void SetIsClosed(bool is_closed) 
         {
             this.is_closed = is_closed;
         }
-
     }
 }

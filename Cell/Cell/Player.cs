@@ -79,10 +79,14 @@ namespace Cell
                 if (sym != this.direction)
                 {
                     // Если последняя линия незамкнута
-                    if (!Lines.Last().GetIsClosed())
+                    if (!Lines.Last().GetIsClosed()) 
+                    {
                         Lines.Add(new Line(Lines.Last().GetEnd(), new Point(x, y)));
-                    else
+                    }
+                    else 
+                    {
                         Lines.Add(new Line(new Point(x, y), new Point(x, y)));
+                    }
                 }
                 else
                 {
@@ -115,8 +119,6 @@ namespace Cell
             // Проверка на пересечение со всеми линиями кроме последней(текущей)
             for (int i = 0; i < Lines.Count() - 1; i++)
             {
-
-
                 int min_x = (Lines[i].GetStart().X < Lines[i].GetEnd().X) ? Lines[i].GetStart().X : Lines[i].GetEnd().X;
                 int min_y = (Lines[i].GetStart().Y < Lines[i].GetEnd().Y) ? Lines[i].GetStart().Y : Lines[i].GetEnd().Y;
                 int max_x = (Lines[i].GetStart().X > Lines[i].GetEnd().X) ? Lines[i].GetStart().X : Lines[i].GetEnd().X;
@@ -198,10 +200,12 @@ namespace Cell
                         if (Lines[i].GetStart().X == Lines[i].GetEnd().X)
                         {
                             M.Reflection("Horizontal");
+                            return;
                         }
                         else if (Lines[i].GetStart().Y == Lines[i].GetEnd().Y)
                         {
                             M.Reflection("Vertical");
+                            return;
                         }
                     }
                 }
@@ -222,10 +226,6 @@ namespace Cell
                 }
             }
             M.Set_is_inside(false);
-        }
-        public Point GetCurPos() 
-        {
-            return new Point(x, y);
         }
         public List<Line> GetLines() 
         {

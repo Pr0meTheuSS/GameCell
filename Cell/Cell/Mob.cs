@@ -34,13 +34,15 @@ namespace Cell
                     inside_counter++;
                 }
             }
-            else {
+            else 
+            {
                 
                 if (inside_counter <= 0)
                 {
                     is_inside = false;
                 }
-                else {
+                else 
+                {
                     inside_counter--;
                 }
             }
@@ -60,7 +62,8 @@ namespace Cell
 
         public void Reflection(String orientation) {
 
-            if (orientation == "Vertical") {
+            if (orientation == "Vertical") 
+            {
                 this.y_velocity *= -1;
             }
             if (orientation == "Horizontal")
@@ -75,7 +78,7 @@ namespace Cell
             {
                 Reflection("Horizontal");
             }
-            if (this.y <= 0 || this.y >= this.win_size_y - 40)
+            else if (this.y <= 0 || this.y >= this.win_size_y - 40)
             {
                 Reflection("Vertical");
             }
