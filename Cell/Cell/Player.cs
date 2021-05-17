@@ -11,7 +11,9 @@ namespace Cell
     {
         private int x, y;
         private int win_width, win_height;
+        
         private String direction;
+        int step = 5;
         List<Line> Lines = new List<Line>();
         List<Polygon> Polygons = new List<Polygon>();
         private bool is_drawing;// флаг активации режима рисования
@@ -47,19 +49,19 @@ namespace Cell
 
             if (sym == "W")
             {
-                y -= 5;
+                y -= step;
             }
             if (sym == "S")
             {
-                y += 5;
+                y += step;
             }
             if (sym == "D")
             {
-                x += 5;
+                x += step;
             }
             if (sym == "A")
             {
-                x -= 5;
+                x -= step;
             }
 
             // Проверка выхода за границы окна
@@ -124,8 +126,8 @@ namespace Cell
                 int max_x = (Lines[i].GetStart().X > Lines[i].GetEnd().X) ? Lines[i].GetStart().X : Lines[i].GetEnd().X;
                 int max_y = (Lines[i].GetStart().Y > Lines[i].GetEnd().Y) ? Lines[i].GetStart().Y : Lines[i].GetEnd().Y;
                 // Если позиция игрока совпадает с некоторой прямой(переcечение) 
-                if ((this.x == Lines[i].GetStart().X && this.x == Lines[i].GetEnd().X && min_y <= this.y && this.y <= max_y) ||
-                    (this.y == Lines[i].GetStart().Y && this.y == Lines[i].GetEnd().Y && min_x <= this.x && this.x <= max_x)
+                if ((x == Lines[i].GetStart().X && x == Lines[i].GetEnd().X && min_y <= y && y <= max_y) ||
+                    (y == Lines[i].GetStart().Y && y == Lines[i].GetEnd().Y && min_x <= x && x <= max_x)
                     )
                 {
                     // Если линия, с которой зафиксировано пересечение, незамкнута

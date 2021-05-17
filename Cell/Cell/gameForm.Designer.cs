@@ -37,7 +37,7 @@ namespace Cell
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(568, 463);
+            this.pictureBox1.Location = new System.Drawing.Point(500, 500);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(16, 14);
@@ -53,11 +53,11 @@ namespace Cell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1283, 693);
+            this.ClientSize = new System.Drawing.Size(1282, 693);
             this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MaximumSize = new System.Drawing.Size(1301, 740);
-            this.MinimumSize = new System.Drawing.Size(1301, 740);
+            this.MaximumSize = new System.Drawing.Size(1300, 740);
+            this.MinimumSize = new System.Drawing.Size(1300, 740);
             this.Name = "gameForm";
             this.Text = "Игровое поле";
             this.Load += new System.EventHandler(this.gameForm_Load);
