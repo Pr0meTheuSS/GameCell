@@ -46,37 +46,39 @@ namespace Cell
                 pos.Add(random.Next(50, winSize[1] - 50));
 
                 vel.Clear();
-                
-
-                int signX = random.Next(-1, 1);
-                int signY;
-
-                if (signX == 0)
-                {
-                    signY = (int)Math.Pow(-1.0, random.Next() % 2);
-                }
-                else 
-                {
-                    signY = random.Next(-1, 1);
-                }
 
 
-                /*
-                модуль рандомизации скорости с отключенным режимом диагонального движения - для фикса
                 int signX;
                 int signY;
 
                 signX = random.Next(-1, 1);
-                
-                if (signX == 0)
+
+                // Если мобов больше 4 - перемещение мобов только по горизонтали или вертикали для упрощения задачи играющему 
+                if (mobsCount > 4)
                 {
-                    signY = (int)Math.Pow(-1.0, random.Next() % 2);                
+                    if (signX == 0)
+                    {
+                        signY = (int)Math.Pow(-1.0, random.Next() % 2);
+                    }
+                    else
+                    {
+                        signY = 0;
+                    }
                 }
-                else
+
+                else 
                 {
-                    signY = 0;
+                    if (signX == 0)
+                    {
+                        signY = (int)Math.Pow(-1.0, random.Next() % 2);
+                    }
+                    else
+                    {
+                        signY = random.Next(-1, 1);
+                    }
                 }
-                 */
+
+
                 vel.Add(speed * signX);
                 vel.Add(speed * signY);
 
