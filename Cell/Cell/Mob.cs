@@ -74,11 +74,11 @@ namespace Cell
         public void Move()
         {
            // отражение от стен 
-            if (this.x <= 0 || this.x >= this.win_size_x - 40) 
+            if (this.x <= 0 || this.x >= this.win_size_x - 50) 
             {
                 Reflection("Horizontal");
             }
-            else if (this.y <= 0 || this.y >= this.win_size_y - 40)
+            else if (this.y <= 0 || this.y >= this.win_size_y - 50)
             {
                 Reflection("Vertical");
             }
