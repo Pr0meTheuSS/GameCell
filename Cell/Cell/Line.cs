@@ -55,9 +55,13 @@ namespace Cell
 
             double dist = 0.0;
 
-            if (c != 0.0) 
+            if (c != 0.0)
             {
                 dist = 2.0 / c * Math.Sqrt(p * (p - a) * (p - b) * (p - c));
+            }
+            else 
+            {
+                return false;
             }
 
             List<int> vector_AC = new List<int>();

@@ -61,6 +61,11 @@ namespace Cell
             0,
             0,
             0});
+            this.MobsCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.MobsCount.Name = "MobsCount";
             this.MobsCount.Size = new System.Drawing.Size(192, 30);
             this.MobsCount.TabIndex = 1;
@@ -96,6 +101,11 @@ namespace Cell
             this.HardLevel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HardLevel.Maximum = new decimal(new int[] {
             10,
+            0,
+            0,
+            0});
+            this.HardLevel.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
